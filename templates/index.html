@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🚗 Car Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>🚗 Car Price Predictor</h2>
+
+        <form method="POST" action="/predict">
+            <table>
+                <tr>
+                    <td><label>Popularity:</label></td>
+                    <td><input name="popularity" required></td>
+                </tr>
+                <tr>
+                    <td><label>Year:</label></td>
+                    <td><input name="year" required></td>
+                </tr>
+                <tr>
+                    <td><label>Engine HP:</label></td>
+                    <td><input name="engine_hp" required></td>
+                </tr>
+                <tr>
+                    <td><label>Engine Cylinders:</label></td>
+                    <td><input name="engine_cylinders" required></td>
+                </tr>
+                <tr>
+                    <td><label>Highway MPG:</label></td>
+                    <td><input name="highway_mpg" required></td>
+                </tr>
+                <tr>
+                    <td><label>City MPG:</label></td>
+                    <td><input name="city_mpg" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="center">
+                        <button type="submit">Predict</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        {% if pred_rf %}
+        <div class="result">
+            <h3>Predicted Price (Random Forest): ${{ pred_rf }}</h3>
+            <h3>Predicted Price (Linear Regression): ${{ pred_lr }}</h3>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
